@@ -4,19 +4,16 @@ import { Token } from '../../tokens/entities/token.entity';
 @Table
 export class User extends Model {
   @Column
-  username: string;
-
-  @Column
-  password: string;
-
-  @Column
   firstName: string;
 
   @Column
   lastName: string;
 
-  @Column
+  @Column({ unique: true })
   email: string;
+
+  @Column
+  password: string;
 
   @Column({ defaultValue: false })
   isAdmin: boolean;
