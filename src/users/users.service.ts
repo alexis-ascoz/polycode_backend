@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { Op } from 'sequelize';
 import { CryptoService } from 'src/auth/crypto.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -9,6 +14,8 @@ export class UsersService {
   constructor(private cryptoService: CryptoService) {}
 
   async create(createUserDto: CreateUserDto) {
+    await this.checkIfUserDosentViolateUniqueConstraint(0, createUserDto.email);
+
     const hashedPassword = await this.cryptoService.hashString(
       createUserDto.password,
     );
@@ -25,11 +32,11 @@ export class UsersService {
   async findOne(id: number) {
     const user = await User.findByPk(id);
 
-    if (user) {
-      return user;
-    } else {
-      throw new NotFoundException();
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} does not exist.`);
     }
+
+    return user;
   }
 
   async findOneByEmail(email: string) {
@@ -43,10 +50,35 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
+    await this.checkIfUserDosentViolateUniqueConstraint(
+      id,
+      updateUserDto.email,
+    );
+
     return await (await this.findOne(id)).update(updateUserDto);
   }
 
   async remove(id: number) {
     return await User.destroy({ where: { id } });
+  }
+
+  async checkIfUserDosentViolateUniqueConstraint(
+    id: number,
+    email: string,
+  ): Promise<any> {
+    if (email) {
+      const userWithSameEmail = await User.findOne({
+        where: {
+          id: { [Op.ne]: id },
+          email,
+        },
+      });
+
+      if (userWithSameEmail) {
+        throw new ConflictException(
+          'This email is already used by another account.',
+        );
+      }
+    }
   }
 }

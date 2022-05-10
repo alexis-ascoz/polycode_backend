@@ -25,14 +25,10 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwtAdmin'))
   @Get()
-  findAll(@ReqUser() user: User) {
-    if (user.isAdmin) {
-      return this.usersService.findAll();
-    } else {
-      throw new ForbiddenException();
-    }
+  findAll() {
+    return this.usersService.findAll();
   }
 
   @UseGuards(AuthGuard('jwt'))
