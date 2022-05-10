@@ -6,6 +6,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { Progress } from 'src/progressions/entities/progress.entity';
 import { CodeLanguage } from 'src/run/run.types';
 import { User } from 'src/users/entities/user.entity';
 
@@ -25,4 +26,7 @@ export class Exercise extends Model {
 
   @Column(DataType.ENUM('JAVASCRIPT'))
   codeLanguage: CodeLanguage;
+
+  @BelongsToMany(() => User, () => Progress)
+  users: User[];
 }

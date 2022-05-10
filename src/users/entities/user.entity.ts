@@ -1,4 +1,12 @@
-import { Column, HasMany, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Exercise } from 'src/exercises/entities/exercise.entity';
+import { Progress } from 'src/progressions/entities/progress.entity';
 import { Token } from '../../tokens/entities/token.entity';
 
 @Table
@@ -20,4 +28,7 @@ export class User extends Model {
 
   @HasMany(() => Token)
   tokens: Token[];
+
+  @BelongsToMany(() => Exercise, () => Progress)
+  exercises: Exercise[];
 }
