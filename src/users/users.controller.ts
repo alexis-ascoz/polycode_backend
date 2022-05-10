@@ -32,6 +32,12 @@ export class UsersController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  findMe(@ReqUser() user: User) {
+    return this.usersService.findOne(user.id);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   findOne(@Param('id') id: string, @ReqUser() user: User) {
     if (!user.isAdmin && user.id !== +id) {
