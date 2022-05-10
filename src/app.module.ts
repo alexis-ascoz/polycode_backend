@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
+
+import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { TokensModule } from './tokens/tokens.module';
 import { AuthModule } from './auth/auth.module';
+import { RunModule } from './run/run.module';
+
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './users/entities/user.entity';
 import { Token } from './tokens/entities/token.entity';
-import { TokensModule } from './tokens/tokens.module';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -13,6 +16,7 @@ import { ConfigModule } from '@nestjs/config';
     UsersModule,
     TokensModule,
     AuthModule,
+    RunModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DATABASE_URL,
