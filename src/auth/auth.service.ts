@@ -11,8 +11,8 @@ export class AuthService {
     private readonly tokenService: TokensService,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.usersService.findOneByUsername(username);
+  async validateUser(email: string, password: string): Promise<any> {
+    const user = await this.usersService.findOneByEmail(email);
 
     if (await this.cryptoService.compareString(password, user.password)) {
       return user;

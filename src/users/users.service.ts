@@ -32,14 +32,14 @@ export class UsersService {
     }
   }
 
-  async findOneByUsername(username: string) {
-    const user = await User.findOne({ where: { username } });
+  async findOneByEmail(email: string) {
+    const user = await User.findOne({ where: { email } });
 
-    if (user) {
-      return user;
-    } else {
+    if (!user) {
       throw new NotFoundException();
     }
+
+    return user;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
