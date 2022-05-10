@@ -8,6 +8,7 @@ import {
 } from 'sequelize-typescript';
 import { Progress } from 'src/progressions/entities/progress.entity';
 import { CodeLanguage } from 'src/run/run.types';
+import { Test } from 'src/tests/entities/test.entity';
 import { User } from 'src/users/entities/user.entity';
 
 @Table
@@ -29,4 +30,7 @@ export class Exercise extends Model {
 
   @BelongsToMany(() => User, () => Progress)
   users: User[];
+
+  @HasMany(() => Test)
+  tests: Test[];
 }
