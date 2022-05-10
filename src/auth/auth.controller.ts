@@ -9,7 +9,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  login(@Body() loginDto: LoginDto, @Req() req) {
+  login(@Body() _loginDto: LoginDto, @Req() req) {
     return this.authService.createUserToken(req.user.id);
   }
 }
