@@ -36,7 +36,21 @@ export class TokensService {
     }
   }
 
-  remove(token: string) {
-    return Token.destroy({ where: { token } });
+  async validateTokenAndReturnUserAdmin(token: string): Promise<User> {
+    const user = await User.findOne({
+      include: [
+        {
+          model: Token,
+          required: true,
+          where: { token },
+        },
+      ],
+    });
+
+    if (user?.isAdmin) {
+      return user;
+    } else {
+      throw new ForbiddenException();
+    }
   }
 }

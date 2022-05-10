@@ -7,10 +7,17 @@ import { AuthController } from './auth.controller';
 import { CryptoService } from './crypto.service';
 import { TokensModule } from 'src/tokens/tokens.module';
 import { JwtStrategy } from './jwt.strategy';
+import { JwtAdminStrategy } from './jwtAdmin.strategy';
 
 @Module({
   imports: [UsersModule, PassportModule, TokensModule],
-  providers: [AuthService, LocalStrategy, JwtStrategy, CryptoService],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    JwtAdminStrategy,
+    CryptoService,
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}
