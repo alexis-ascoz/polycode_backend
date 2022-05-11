@@ -27,15 +27,14 @@ export class ExercisesController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get()
-  findAll() {
-    return this.exercisesService.findAll();
+  findAll(@ReqUser() user: User) {
+    return this.exercisesService.findAllWithUserInfo(user);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   findOne(@Param('id') id: string, @ReqUser() user: User) {
-    // add user to exercise
-    return this.exercisesService.findOne(+id);
+    return this.exercisesService.findOneWithUserInfo(+id, user);
   }
 
   @UseGuards(AuthGuard('jwtAdmin'))
