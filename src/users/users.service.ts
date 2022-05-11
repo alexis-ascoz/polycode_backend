@@ -43,7 +43,7 @@ export class UsersService {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      throw new NotFoundException();
+      throw new NotFoundException(`User with email ${email} does not exist.`);
     }
 
     return user;

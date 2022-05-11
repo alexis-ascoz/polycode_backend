@@ -7,15 +7,15 @@ import { Token } from './entities/token.entity';
 export class TokensService {
   constructor(private readonly jwtService: JwtService) {}
 
-  create(id: number) {
+  create(userId: number) {
     const token = this.jwtService.sign(
-      { id },
+      { id: userId },
       { expiresIn: '10d', secret: process.env.JWT_SECRET },
     );
 
     const expiresAt = new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000);
 
-    return Token.create({ token, userId: id, expiresAt });
+    return Token.create({ token, userId, expiresAt });
   }
 
   async validateTokenAndReturnUser(token: string): Promise<User> {

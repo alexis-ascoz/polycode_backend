@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { TokensService } from 'src/tokens/tokens.service';
 import { UsersService } from '../users/users.service';
 import { CryptoService } from './crypto.service';
@@ -14,11 +14,11 @@ export class AuthService {
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.usersService.findOneByEmail(email);
 
-    if (await this.cryptoService.compareString(password, user.password)) {
-      return user;
+    if (!(await this.cryptoService.compareString(password, user.password))) {
+      throw new NotFoundException();
     }
 
-    return null;
+    return user;
   }
 
   async createUserToken(userId: number) {
