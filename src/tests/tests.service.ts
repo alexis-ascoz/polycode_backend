@@ -78,7 +78,7 @@ export class TestsService {
     });
 
     return {
-      success: result.stdout === test.output,
+      success: result.stdout === test.output && result.stderr === undefined,
       ...result,
       expected: test.output,
     };
@@ -103,7 +103,7 @@ export class TestsService {
           test.input,
         );
 
-        if (result.stdout === test.output) {
+        if (result.stdout === test.output && result.stderr === undefined) {
           successNumber++;
         }
       }),

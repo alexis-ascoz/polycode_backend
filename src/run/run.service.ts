@@ -64,7 +64,7 @@ export class RunService {
     return new Promise(async (resolve) => {
       if (
         !(await docker.listImages()).find((img: any) =>
-          img.RepoTags.includes(image),
+          img.RepoTags?.includes(image),
         )
       ) {
         console.log(`Downloading image ${image}...`);
@@ -86,5 +86,3 @@ export class RunService {
     });
   }
 }
-
-// run(ContainerType.JAVASCRIPT, 'console.log("Tacos deux viandes");').then(console.log);
