@@ -74,8 +74,8 @@ export class ExercisesService {
 
     return {
       id: exercise.id,
-      title: exercise.id,
-      descritpion: exercise.description,
+      title: exercise.title,
+      description: exercise.description,
       instructions: exercise.instructions,
       baseCode: exercise.baseCode,
       codeLanguage: exercise.codeLanguage,
