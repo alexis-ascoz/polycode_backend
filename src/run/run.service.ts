@@ -73,7 +73,7 @@ export class RunService {
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         stream.on('data', (_data: { toString: () => any }) => {
-          // console.log(_data.toString());
+          console.log(_data.toString());
         });
 
         stream.on('end', () => {
