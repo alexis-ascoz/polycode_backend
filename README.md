@@ -1,38 +1,42 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+<br />
+<div align="center">
+  <a href="https://ascoz.fr">
+    <img src="images/logo.png" alt="Logo">
+  </a>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  <h3 align="center">A small coding learning app</h3>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">
+    <a href="https://ascoz.fr">View website</a>
+  </p>
+</div>
 
-## Description
+## À propos du projet
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Ce projet a été réalisé dans le cadre d'un cours de développement web.\
+Il consiste à créer un site web permettant de s'exercer sur la programmation, en suivant des exercices définis.\
+Cette partie ne concerne que le back-end de l'application. [Voir le front-end](https://github.com/Alexis-Bernard/polycode_frontend)
+
+### Technologies utilisées
+
+* [NestJS](https://nestjs.com/)
+* [Sequelize](https://sequelize.org/)
+* [Dockerode](https://github.com/apocas/dockerode)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Passport.js](https://www.passportjs.org/)
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. Clonez le projet sur votre machine.
+   ```sh
+   git clone https://github.com/Alexis-Bernard/polycode_backend.git
+   ```
+2. Installez les dépendances.
+   ```sh
+   npm install
+   ```
 
-## Running the app
+## Utilisation
 
 ```bash
 # development
@@ -45,29 +49,47 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Architecture du projet
 
-```bash
-# unit tests
-$ npm run test
+Voici un schéma représentant l'architecture technique du projet.\
+<img src="images/architecture.png" alt="Image">
 
-# e2e tests
-$ npm run test:e2e
+Voici le schéma d'architexture de la base de données.\
+<img src="images/db.png" alt="Image">
 
-# test coverage
-$ npm run test:cov
-```
+## Choix des technologies
 
-## Support
+Certaines technologies utilisées dans ce projet étaient oblogatoires; d'autres ont été chosies par moi même.\
+Pour celles non imposés, voici mes remarques positives et négatives.\
+   * NestJS:
+     * Positif : Simplicité d'utilisation, facilite la création d'un projet et l'ajout d'élements via la cli.
+     * Négatif : Le framework est difficile à la comprehension au départ. De plus, le fait que tout fonctionne avec des décorateurs nous cache le réel fonctionnement de l'application.
+   * Dockerode:
+     * Positif : Pratique pour exécuter rapidement des containers docker sans trop s'embêter.
+     * Négatif : La documentation est trop peu avancée, parfois on perd du temps sur des choses qui auraient pu être mieux expliquées
+   * Sequelize:
+     * Positif : Simplicité d'utilisation, facilite la création d'une base de données. De plus, je connaissait déjà cet outil.
+     * Négatif : Je n'ai jamais utilisé d'autre ORM, il est difficile de donner des points négatifs là dessus..
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## CI/CD
+  * CI - GitHub actions:
+    * Build app
+    * Share artifacts
+    * Build Dockerfile
+    * Push to Dockerhub
+  * CD - Docker Compose:
+    * Nginx (as reverse-proxy)
+    * Frontend
+    * Backend
+    * Postgres database
 
-## Stay in touch
+## Post mortem
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Sur ce projet, j'ai beaucoup mieux géré mon temps. Cela m'a permis de mieux comprendre les frameworks que j'ai utilisé et de les mettre en place correctement.
 
-## License
+Cependant, j'ai aussi pu faire des erreurs et des fautes :\
+J'ai développé certaines parties dont je n'avais pas besoin (Tests sur les exercices, etc.), au dépend de ce que j'avais à faire.\
+Ainsi mon projet n'a pas de tests unitaires, mais il est bien fonctionnel.
 
-Nest is [MIT licensed](LICENSE).
+La méthode consistant à dé-risquer les parties moins inconnues à faire m'a permis de mieux gérer mon temps pour la suite.\
+Cependant, certaines parties; comme la gestion des mails, n'a pas pu être développée.
