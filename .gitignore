@@ -37,5 +37,4 @@ lerna-debug.log*
 .env
 
 *.spec.ts
-docker-compose.yml
 postgres

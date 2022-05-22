@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  app:
+    image: jc21/nginx-proxy-manager:latest
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - "frontend"
+      - "backend"
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=<password>
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    restart: always
+
+  frontend:
+    image: ascoz/polycode_front:latest
+    expose:
+      - "80"
+    restart: always
+
+  backend:
+    image: ascoz/polycode_back:latest
+    expose:
+      - "8080"
+    environment:
+      - DATABASE_URL=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=<password>
+      - DATABASE_NAME=postgres
+      - JWT_SECRET=simon
+      - APP_PORT=8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - "postgres"
+    restart: always
