@@ -12,6 +12,9 @@ import { Token } from '../../tokens/entities/token.entity';
 @Table
 export class User extends Model {
   @Column
+  verifytoken: string;
+
+  @Column
   firstName: string;
 
   @Column

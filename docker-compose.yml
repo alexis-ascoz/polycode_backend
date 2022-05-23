@@ -44,6 +44,7 @@ services:
       - DATABASE_NAME=postgres
       - JWT_SECRET=simon
       - APP_PORT=8080
+      - EMAIL_KEY=<email_key_for_Sendinblue>
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
