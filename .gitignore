@@ -37,4 +37,3 @@ lerna-debug.log*
 .env
 
 *.spec.ts
-postgres

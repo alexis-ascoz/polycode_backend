@@ -64,6 +64,8 @@ export class UsersService {
       verifytoken,
     }).save();
 
+    user.verifytoken = undefined;
+
     return user;
   }
 

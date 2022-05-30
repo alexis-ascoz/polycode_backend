@@ -13,7 +13,7 @@ const containerStrategies: Map<CodeLanguage, ContainerStrategy> = new Map([
     CodeLanguage.JAVASCRIPT,
     {
       image: 'node:18',
-      commands: ['echo $SOURCE_CODE > main.js', 'node main.js $ARGUMENTS'],
+      commands: ['echo "$SOURCE_CODE" > main.js', 'node main.js $ARGUMENTS'],
     },
   ],
 ]);

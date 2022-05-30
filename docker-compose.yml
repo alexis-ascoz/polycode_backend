@@ -42,7 +42,7 @@ services:
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=<password>
       - DATABASE_NAME=postgres
-      - JWT_SECRET=simon
+      - JWT_SECRET=<jwt_secret>
       - APP_PORT=8080
       - EMAIL_KEY=<email_key_for_Sendinblue>
     volumes:
