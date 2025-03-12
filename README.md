@@ -1,13 +1,13 @@
 <br />
 <div align="center">
-  <a href="https://ascoz.fr">
+  <a href="https://polycode.ascoz.fr">
     <img src="images/logo.png" alt="Logo">
   </a>
 
   <h3 align="center">A small coding learning app</h3>
 
   <p align="center">
-    <a href="https://ascoz.fr">View website</a>
+    <a href="https://polycode.ascoz.fr">View website</a>
   </p>
 </div>
 
